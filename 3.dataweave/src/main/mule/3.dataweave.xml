@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<flow name="3.dataweave_basics" doc:id="2b71ec2a-d96e-4fa8-a5c2-364293d4f95b" >
 		<ee:transform doc:name="concatenate strings" doc:id="b4720e24-99bb-4c06-afa5-c5ba0ae7712e" >
 			<ee:message >
@@ -240,6 +241,54 @@ var custString="Mulesoft"
 output application/json
 ---
 custString[1 to sizeOf(custString)-2]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="3.dataweave_lambdas_basics" doc:id="5f6cb268-3975-41d2-bed6-a066649cc0b9" >
+		<http:listener doc:name="HTTP POST" doc:id="0bdb361c-8870-47a4-b057-57066447772c" path="/lambdas" config-ref="HTTP_Listener_config" allowedMethods="POST"/>
+		<ee:transform doc:name="declare and invoke a function" doc:id="cc564e71-3ff4-4cb6-b4a7-0c8c5548a1c5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+
+fun createString(obj)= {
+	description: obj.fields1 ++ " " ++ obj.fields2 ++ " " ++ obj.fields3
+}
+
+output application/json
+---
+{
+	"root": createString(payload)
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="3e7d4dc8-037d-4703-b5dd-eb2fb07efdd8" message="#[payload]"/>
+		<ee:transform doc:name="use named parameters in lambdas" doc:id="fc9acdbc-db70-45e9-b754-9da38534bb9b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+
+var customArray=[1,2,3,4,5]
+
+output application/json
+---
+{
+	"collection": customArray map ((number) -> number*100 )
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="77b58e0c-9b74-4f27-a5ee-ee8dc17804e0" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="8b16f27b-303b-4592-9763-f5c9c4a48298" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+
+var customArray=["Mulesoft","course","fundamentals"]
+
+output application/json
+---
+{
+	"collection": customArray map (
+		"$$": $
+	)
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>

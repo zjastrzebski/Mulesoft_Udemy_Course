@@ -1,5 +1,6 @@
 {
   "configs": [
+    "global.xml",
     "3.dataweave.xml"
   ],
   "secureProperties": [],
@@ -14,6 +15,9 @@
       "exportedResources": [
         "3.dataweave.xml",
         "application-types.xml",
+        "examples/fieldsCourse.json",
+        "fieldsCourse.json",
+        "global.xml",
         "log4j2.xml",
         "people.json"
       ]
