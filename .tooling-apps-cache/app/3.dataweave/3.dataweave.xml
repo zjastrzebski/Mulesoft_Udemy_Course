@@ -292,4 +292,79 @@ output application/json
 			</ee:message>
 		</ee:transform>
 	</flow>
+	<flow name="dataweave_lambdas_intermediate" doc:id="028b95c1-835e-43d4-b48b-ad836ddfe1f5" >
+		<ee:transform doc:name="merging data from two arrays" doc:id="a09fb472-07bd-4921-a528-bb8d2a6a1f62" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var books=[
+	{
+	bookId: 101,
+	title: "Mulesoft fundamentals",
+	price: "50"
+	},
+	{
+	bookId: 202,
+	title: "Mulesoft essentials",
+	price: "100"
+	},
+	{
+	bookId: 303,
+	title: "Mulesoft advanced",
+	price: "150"
+	},
+]
+var authors=[
+	{
+		bookId: 202,
+		author: "John Doe"
+	},
+	{
+		bookId: 303,
+		author: "Dan Brown"
+	},
+	{
+		bookId: 101,
+		author: "Amanda Smith"
+	},
+]
+output application/json
+---
+{
+	"booksResult":books map ((item, index) -> {
+		"id":item.bookId,
+		"price":item.price,
+		"title":item.title,
+		(authors filter($.bookId==item.bookId)
+			map()->"author":$.author
+		)
+		}
+	)
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="return only the matching keys within the object" doc:id="6d2a3178-1ec6-4e69-b0c4-aa307f61a114" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var booksList=[book: {
+	bookId: 101,
+	title: "Mulesoft fundamentals",
+	price: "50"
+},
+	book: {
+	bookId: 202,
+	title: "Mulesoft essentials",
+	price: "100"
+},
+	book: {
+	bookId: 303,
+	title: "Mulesoft advanced",
+	price: "150"
+},]
+output application/json
+---
+//lest get all prices > 50
+"prices": booksList.book.price[($>50)]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 </mule>
