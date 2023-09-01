@@ -363,7 +363,8 @@ var booksList=[book: {
 output application/json
 ---
 //lest get all prices > 50
-"prices": booksList.book.price[($>50)]]]></ee:set-payload>
+"prices": booksList.book.price[?($>50)]
+// ? - check if price exists and if so, if price >50. ? is needed, if not set $ is unknown ]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>

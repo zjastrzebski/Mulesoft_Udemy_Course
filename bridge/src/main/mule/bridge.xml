@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="bridgeFlow" doc:id="9d3c091e-652a-4faa-b5e3-4190a0c3841c" >
+		<ee:transform doc:name="Zakoduj tablice" doc:id="ab7bbbb7-f7fc-4958-8204-5b6db68a9f74" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var zapisy=[
+	zapis:{
+		zapisId:"1",
+		nrRozd:"1",
+		nrParyNS:"1",
+		nrParyWE:"2",
+		kontrakt:"4C",
+		wartosc:"420",
+	},
+	zapis:{
+		zapisId:"2",
+		nrRozd:"1",
+		nrParyNS:"3",
+		nrParyWE:"4",
+		kontrakt:"4C",
+		wartosc:"420",
+	},
+	zapis:{
+		zapisId:"3",
+		nrRozd:"1",
+		nrParyNS:"5",
+		nrParyWE:"6",
+		kontrakt:"4C",
+		wartosc:"420",
+	},
+	zapis:{
+		zapisId:"4",
+		nrRozd:"1",
+		nrParyNS:"7",
+		nrParyWE:"8",
+		kontrakt:"4C",
+		wartosc:"420",
+	},
+	zapis:{
+		zapisId:"5",
+		nrRozd:"1",
+		nrParyNS:"1",
+		nrParyWE:"2",
+		kontrakt:"4C",
+		wartosc:"420",
+	},
+]
+output application/json
+---
+zapisy]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="bridgeFlow3" doc:id="e2747aea-1ad9-4995-aafa-024c4880313e" >
+		<ee:transform doc:name="Transform Message" doc:id="e3f12c3e-8c9f-4406-96ac-91fc26844f47" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var paryTurnieju=[
+	paraTurnieju: {
+		nrPary: "1",
+		nrOsoby1: "1",
+		nrOsoby2: "2",
+	},
+	paraTurnieju: {
+		nrPary: "2",
+		nrOsoby1: "3",
+		nrOsoby2: "4",
+	},
+	paraTurnieju: {
+		nrPary: "3",
+		nrOsoby1: "5",
+		nrOsoby2: "6",
+	},
+	paraTurnieju: {
+		nrPary: "4",
+		nrOsoby1: "7",
+		nrOsoby2: "8",
+	},
+	paraTurnieju: {
+		nrPary: "5",
+		nrOsoby1: "9",
+		nrOsoby2: "10",
+	},
+	
+]
+output application/json
+---
+paryTurnieju
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="bridgeFlow4" doc:id="c4daccf7-7a6a-42c7-ac44-64982fa43dea" >
+		<ee:transform doc:name="Transform Message" doc:id="4dd1ebdf-9cd1-4af8-93cc-577f5a2b6306" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var osoby=[
+	osoba:{
+		NazwiskoIIMie: "Kowalski Jan",
+		idOsoby: "1",
+	},
+	osoba:{
+		NazwiskoIIMie: "Miadziołko Cezary",
+		idOsoby: "1",
+	},
+	osoba:{
+		NazwiskoIIMie: "Kurpisz Andrzej",
+		idOsoby: "2",
+	},
+	osoba:{
+		NazwiskoIIMie: "Malentowicz Renata",
+		idOsoby: "3",
+	},
+	osoba:{
+		NazwiskoIIMie: "Frejman Dariusz",
+		idOsoby: "4",
+	},
+	osoba:{
+		NazwiskoIIMie: "Nowak Kazimierz",
+		idOsoby: "5",
+	},
+	osoba:{
+		NazwiskoIIMie: "Dydkiewicz Janusz",
+		idOsoby: "6",
+	},
+	osoba:{
+		NazwiskoIIMie: "Styk Wojciech",
+		idOsoby: "7",
+	},
+	osoba:{
+		NazwiskoIIMie: "Witkacy Jan",
+		idOsoby: "8",
+	},
+	osoba:{
+		NazwiskoIIMie: "Kobuszewski Zdzisław",
+		idOsoby: "9",
+	},
+	osoba:{
+		NazwiskoIIMie: "Lemkowska Anna",
+		idOsoby: "10",
+	}
+]
+output application/json
+---
+osoby]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="bridgeFlow2" doc:id="355141d5-dee3-41a6-bf4f-bc446495e86b" >
+		<ee:transform doc:name="Transform Message" doc:id="571693e9-053d-4339-8372-f68bbd43bfdc" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+
+var rozdania=[
+	rozdanie:{
+		"nrRozdania":"1",
+	},
+	rozdanie:{
+		"nrRozdania":"2",
+	},
+	rozdanie:{
+		"nrRozdania":"3",
+	},
+	rozdanie:{
+		"nrRozdania":"4",
+	}
+]
+output application/json
+---
+rozdania]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="bridgeFlow1" doc:id="3ea3e40d-c231-436b-aebd-f9b92b873920" >
+		<ee:transform doc:name="Transform Message" doc:id="3a037188-0169-44fe-85db-8a2719dac326" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+readUrl("classpath://rozdania.json","application/json")]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="badede9b-e6a7-4e64-8684-87ec119ea7b1">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="dc9966eb-9509-4b9f-b3e5-bdbc37ee83af" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+var zapisy=payload
+var rozdania=readUrl("classpath://rozdania.json","application/json") as Array
+var paryTurnieju=readUrl("classpath://paryTurnieju.json","application/json") as Array
+var osoby=readUrl("classpath://osoby.json","application/json") as Array
+output application/json
+---
+zapisy groupBy $.zapis.nrParyNS mapObject{
+	"rozdanie": {"nrPary" : ($$),
+	"sumaPkt": sum($.zapis.ilPkt)
+	} 
+	} ]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -1,0 +1,68 @@
+[
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Kowalski Jan",
+      "idOsoby": "1"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Miadziołko Cezary",
+      "idOsoby": "1"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Kurpisz Andrzej",
+      "idOsoby": "2"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Malentowicz Renata",
+      "idOsoby": "3"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Frejman Dariusz",
+      "idOsoby": "4"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Nowak Kazimierz",
+      "idOsoby": "5"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Dydkiewicz Janusz",
+      "idOsoby": "6"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Styk Wojciech",
+      "idOsoby": "7"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Witkacy Jan",
+      "idOsoby": "8"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Kobuszewski Zdzisław",
+      "idOsoby": "9"
+    }
+  },
+  {
+    "osoba": {
+      "NazwiskoIIMie": "Lemkowska Anna",
+      "idOsoby": "10"
+    }
+  }
+]

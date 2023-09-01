@@ -1,0 +1,113 @@
+[
+  {
+    "zapis": {
+      "zapisId": "1",
+      "nrRozd": "1",
+      "nrParyNS": "1",
+      "nrParyWE": "2",
+      "kontrakt": "4C",
+      "wartosc": "420",
+      "ilPkt":5
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "2",
+      "nrRozd": "1",
+      "nrParyNS": "3",
+      "nrParyWE": "4",
+      "kontrakt": "4C",
+      "wartosc": "420",
+      "ilPkt":5
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "3",
+      "nrRozd": "1",
+      "nrParyNS": "5",
+      "nrParyWE": "6",
+      "kontrakt": "4C-1",
+      "wartosc": "-50",
+      "ilPkt":0
+
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "4",
+      "nrRozd": "1",
+      "nrParyNS": "7",
+      "nrParyWE": "8",
+      "kontrakt": "4C+1",
+      "wartosc": "450",
+      "ilPkt":8
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "5",
+      "nrRozd": "1",
+      "nrParyNS": "9",
+      "nrParyWE": "10",
+      "kontrakt": "3C+1",
+      "wartosc": "140",
+      "ilPkt":2
+    }
+   },
+  {
+    "zapis": {
+      "zapisId": "6",
+      "nrRozd": "2",
+      "nrParyNS": "1",
+      "nrParyWE": "6",
+      "kontrakt": "2BA=",
+      "wartosc": "120",
+      "ilPkt":4
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "7",
+      "nrRozd": "2",
+      "nrParyNS": "2",
+      "nrParyWE": "7",
+      "kontrakt": "1C+1",
+      "wartosc": "110",
+      "ilPkt":2
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "8",
+      "nrRozd": "2",
+      "nrParyNS": "3",
+      "nrParyWE": "8",
+      "kontrakt": "2C+1",
+      "wartosc": "140",
+      "ilPkt":6
+    }
+  },
+  {
+    "zapis": {
+      "zapisId": "9",
+      "nrRozd": "2",
+      "nrParyNS": "4",
+      "nrParyWE": "9",
+      "kontrakt": "3K-2",
+      "wartosc": "-100",
+      "ilPkt":0
+    }
+   },
+  {
+    "zapis": {
+      "zapisId": "9",
+      "nrRozd": "2",
+      "nrParyNS": "5",
+      "nrParyWE": "10",
+      "kontrakt": "3BA",
+      "wartosc": "400",
+      "ilPkt":8
+    }
+  }  
+]

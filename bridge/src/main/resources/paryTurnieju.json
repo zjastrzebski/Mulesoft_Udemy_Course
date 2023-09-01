@@ -1,0 +1,37 @@
+[
+  {
+    "paraTurnieju": {
+      "nrPary": "1",
+      "nrOsoby1": "1",
+      "nrOsoby2": "2"
+    }
+  },
+  {
+    "paraTurnieju": {
+      "nrPary": "2",
+      "nrOsoby1": "3",
+      "nrOsoby2": "4"
+    }
+  },
+  {
+    "paraTurnieju": {
+      "nrPary": "3",
+      "nrOsoby1": "5",
+      "nrOsoby2": "6"
+    }
+  },
+  {
+    "paraTurnieju": {
+      "nrPary": "4",
+      "nrOsoby1": "7",
+      "nrOsoby2": "8"
+    }
+  },
+  {
+    "paraTurnieju": {
+      "nrPary": "5",
+      "nrOsoby1": "9",
+      "nrOsoby2": "10"
+    }
+  }
+]
