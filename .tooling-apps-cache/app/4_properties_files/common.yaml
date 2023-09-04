@@ -1,4 +1,0 @@
-http:
-  port: "8081"
-  host: "localhost"
-  path: "/env"
