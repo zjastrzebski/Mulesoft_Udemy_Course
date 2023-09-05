@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<flow name="create_new_file" doc:id="25a19f4b-1720-4d1b-b369-0b6687ff446e" >
+		<http:listener doc:name="HTTP POST" doc:id="6701c5e4-98cb-46e0-bdcc-b02734567249" allowedMethods="POST" config-ref="HTTP_Listener_config" path="/write"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5e09c089-9eef-4498-9089-3c1dbe8bc569" message="#[%dw 2.0&#10;&#10;output application/json&#10;---&#10;&#10;payload]"/>
+		<set-variable value="#[payload.fileName]" doc:name="remember filename" doc:id="499b1603-a1c5-41e7-b778-2157953f6dfe" variableName="nameOfFile"/>
+		<file:write doc:name="Write to a file" doc:id="ba19515b-7ecb-4643-92b6-6554c9db2ab1" config-ref="File_Config" path='#["write/" ++ vars.nameOfFile ++ ".csv"]' mode="APPEND">
+			<file:content ><![CDATA[#[%dw 2.0
+output application/csv
+---
+payload.customer]]]></file:content>
+		</file:write>
+	</flow>
+	<flow name="poll_on_directory_or_file_creation" doc:id="94501521-ea12-47bb-a9b9-f8044f5688b2" >
+		<file:listener doc:name="On New or Updated File" doc:id="3da98222-bef9-41e6-ac79-a73b4921fe73" config-ref="File_Config" directory="C:\Users\ZbigniewJastrzebski\Mulesoft_Udemy_Course\files\write" watermarkMode="MODIFIED_TIMESTAMP" timeBetweenSizeCheck="10" timeBetweenSizeCheckUnit="SECONDS">
+			<scheduling-strategy >
+				<fixed-frequency timeUnit="SECONDS"/>
+			</scheduling-strategy>
+		</file:listener>
+		<logger level="INFO" doc:name="Logger" doc:id="746205a7-beaf-402d-9dae-881117b02025" message='#[%dw 2.0&#10;&#10;output application/json&#10;---&#10;{&#10;	"modifyTime" : attributes.lastModifiedTime,&#10;	"filename": attributes.fileName,&#10;	"size": attributes.size&#10;}]'/>
+	</flow>
+	<flow name="list_files_in_directory" doc:id="549f8a5f-15cb-4e38-969b-b1c4c1be0052" >
+		<http:listener doc:name="HTTP GET" doc:id="c75f703e-3eee-412e-bf87-342a1411226f" config-ref="HTTP_Listener_config" path="/listFilesBasic" allowedMethods="GET"/>
+		<file:list doc:name="List files in /write directory" doc:id="fb0f8c47-9326-4e28-ae88-cd3ac015a92e" config-ref="File_Config" directoryPath="write"/>
+		<logger level="INFO" doc:name="Log type of payload" doc:id="02b1e482-d135-4954-ac54-bad2998980a7" message='#[%dw 2.0&#10;output application/json&#10;---&#10;{&#10;	"typeOfPayload" : typeOf(payload)&#10;}]'/>
+		<set-payload value='#[%dw 2.0&#10;output application/json&#10;---&#10;payload map ((item, index) -&gt;&#10;	{&#10;		"filename": item.attributes.fileName&#10;	}&#10;)]' doc:name="Set Payload" doc:id="0d52adc6-a9a7-46da-9768-ae0173d4e214" />
+	</flow>
+</mule>
